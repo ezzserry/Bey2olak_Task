@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/poi_top_rl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/poi_cv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <RelativeLayout
+            android:id="@+id/poi_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/poi_thumbnail"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder" />
+
+            <TextView
+                android:id="@+id/poi_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/poi_thumbnail"
+                android:maxLines="2"
+                android:padding="8dp"
+                android:text="Title"
+                android:textColor="#222"
+                android:textSize="15dp"
+                android:layout_toLeftOf="@+id/poi_checkbox"/>
+
+            <TextView
+                android:id="@+id/address_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/poi_name_tv"
+                android:layout_toRightOf="@+id/poi_thumbnail"
+                android:maxLines="2"
+                android:padding="8dp"
+                android:text="address"
+                android:textColor="#222"
+                android:textSize="15dp"
+                android:layout_toLeftOf="@+id/poi_checkbox"/>
+
+            <CheckBox
+                android:id="@+id/poi_checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
