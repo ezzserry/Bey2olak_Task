@@ -41,6 +41,7 @@ public class POI_Screen extends AppCompatActivity {
             latitude = bundle.getDouble("latitude");
             longitude = bundle.getDouble("longitude");
         }
+        adapter = new POI_RecyclerViewAdapter();
         loading = new ProgressDialog(this);
         loading.setCancelable(true);
         loading.setMessage("Please Wait");
@@ -70,9 +71,7 @@ public class POI_Screen extends AppCompatActivity {
 
             }
 
-            Toast.makeText(POI_Screen.this,
-                    "Selected POIs: \n" + data, Toast.LENGTH_LONG)
-                    .show();
+
         } else
             Toast.makeText(POI_Screen.this,
                     "No selected POIs: \n" + data, Toast.LENGTH_LONG)
@@ -94,7 +93,6 @@ public class POI_Screen extends AppCompatActivity {
                             String code = meta.getString("code");
                             if (code.equals("200")) {
                                 poi_dataList = new ArrayList<>();
-                                Toast.makeText(getApplicationContext(), code, Toast.LENGTH_LONG).show();
                                 JSONArray venus = response.getJSONObject("response").getJSONArray("venues");
                                 for (int i = 0; i < venus.length(); i++) {
                                     JSONObject object = (JSONObject) venus.get(i);
@@ -108,10 +106,13 @@ public class POI_Screen extends AppCompatActivity {
                                     } catch (Exception e) {
                                         poi_data.setAddress("No Address found");
                                     }
-                                    JSONObject categ = object.getJSONArray("categories").getJSONObject(0);
-                                    JSONObject icon = categ.getJSONObject("icon");
-                                    poi_data.setImg(icon.getString("prefix") + "64" + icon.getString("suffix"));
-                                    poi_dataList.add(poi_data);
+                                    JSONArray categoriesJsonArray = object.getJSONArray("categories");
+                                    if (categoriesJsonArray.length() > 0) {
+                                        JSONObject categ = categoriesJsonArray.getJSONObject(0);
+                                        JSONObject icon = categ.getJSONObject("icon");
+                                        poi_data.setImg(icon.getString("prefix") + "64" + icon.getString("suffix"));
+                                    }
+                                        poi_dataList.add(poi_data);
 
                                 }
                                 // adapter

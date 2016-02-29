@@ -19,11 +19,12 @@ import java.util.List;
 public class MainRecyclerView_Adapter extends RecyclerView.Adapter<MainRecyclerView_Adapter.CustomViewHolder> {
     private List<POI_Data> poi_dataArrayList;
     private Context mContext;
-    DatabaseHandler db;
+
 
     @Override
     public MainRecyclerView_Adapter.CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_main, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_main, parent, false
+        );
 
         CustomViewHolder viewHolder = new CustomViewHolder(view);
         return viewHolder;
@@ -32,18 +33,17 @@ public class MainRecyclerView_Adapter extends RecyclerView.Adapter<MainRecyclerV
     public MainRecyclerView_Adapter(Context context, List<POI_Data> poi_dataArrayList) {
         this.mContext = context;
         this.poi_dataArrayList = poi_dataArrayList;
-        db = new DatabaseHandler(context);
 
     }
 
     @Override
     public void onBindViewHolder(MainRecyclerView_Adapter.CustomViewHolder holder, int position) {
 
-        for (POI_Data poi_data : poi_dataArrayList) {
-            String name = poi_data.getName();
+//        for (POI_Data poi_data : poi_dataArrayList) {
+            String name = poi_dataArrayList.get(position).getName();
             holder.textView.setText(name);
 
-        }
+//        }
     }
 
     @Override

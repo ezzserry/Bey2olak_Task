@@ -6,7 +6,7 @@ package com.example.lenovo.bey2olak_task;
 public class POI_Data {
     int id;
     String name, address, img;
-    private boolean isSelected;
+     boolean isSelected;
 
     public POI_Data(int id, String name) {
         this.id = id;

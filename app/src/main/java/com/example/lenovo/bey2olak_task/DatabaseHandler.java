@@ -28,6 +28,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String ID = "id";
     private static final String Name = "name";
     private static final String Address = "address";
+    private static final String IsSelected = "is_selected";
+
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -38,7 +40,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_POIs_TABLE = "CREATE TABLE " + Table_POIs
                 + "(" + ID + " INTEGER,"
                 + Name + " TEXT,"
-                + Address + " TEXT" + ")";
+                + Address + " TEXT,"
+                + IsSelected + " INTEGER" + ")";
         db.execSQL(CREATE_POIs_TABLE);
     }
 
@@ -59,6 +62,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(ID, poiData.getId()); //  Id
         values.put(Name, poiData.getName()); // Name
         values.put(Address, poiData.getAddress()); // Address
+        values.put(IsSelected, poiData.isSelected());
 
         // Inserting Row
         db.insert(Table_POIs, null, values);
@@ -69,7 +73,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<POI_Data> getAllPOIS() {
         List<POI_Data> contactList = new ArrayList<POI_Data>();
         // Select All Query
-        String selectQuery = "SELECT*FROM " + Table_POIs;
+        String selectQuery = "SELECT * FROM " + Table_POIs;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -79,6 +83,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 POI_Data project = new POI_Data();
                 project.setId(Integer.parseInt(cursor.getString(0)));
                 project.setName(cursor.getString(1));
+                project.setIsSelected(Boolean.parseBoolean(cursor.getString(2)));
                 contactList.add(project);
                 cursor.moveToNext();
             }

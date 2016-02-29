@@ -31,6 +31,10 @@ public class POI_RecyclerViewAdapter extends RecyclerView.Adapter<POI_RecyclerVi
 
     }
 
+    public POI_RecyclerViewAdapter() {
+
+    }
+
     @Override
     public POI_RecyclerViewAdapter.CustomViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_pois, null);
@@ -65,11 +69,6 @@ public class POI_RecyclerViewAdapter extends RecyclerView.Adapter<POI_RecyclerVi
 
                 contact.setIsSelected(cb.isChecked());
                 poi_dataArrayList.get(position).setIsSelected(cb.isChecked());
-
-                Toast.makeText(
-                        v.getContext(),
-                        "Clicked on Checkbox: " + cb.getText() + " is "
-                                + cb.isChecked(), Toast.LENGTH_LONG).show();
             }
         });
     }

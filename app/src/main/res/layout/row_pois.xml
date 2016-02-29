@@ -22,7 +22,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/placeholder" />
+                android:src="@drawable/placeholder"
+                android:background="@color/colorAccent"/>
 
             <TextView
                 android:id="@+id/poi_name_tv"
